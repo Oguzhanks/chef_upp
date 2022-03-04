@@ -1,5 +1,5 @@
-import '../interfaces/IErrorModel.dart';
-import '../interfaces/INetworkModel.dart';
+import '../interface/IErrorModel.dart';
+import '../interface/INetworkModel.dart';
 
 class ErrorModel<T> implements IErrorModel {
   @override

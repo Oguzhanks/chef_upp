@@ -1,4 +1,4 @@
-import '../interfaces/INetworkModel.dart';
+import '../interface/INetworkModel.dart';
 
 class EmptyModel extends INetworkModel<EmptyModel> {
   String? name;

@@ -11,6 +11,7 @@ extension _CoreServiceExtension on NetworkManager {
     }
   }
 
+  // ignore: body_might_complete_normally_nullable
   R? _parseBody<R, T extends INetworkModel>(dynamic responseBody, T model) {
     try {
       if (responseBody is List) {
@@ -26,8 +27,7 @@ extension _CoreServiceExtension on NetworkManager {
         }
       }
     } catch (e) {
-      CustomLogger(isEnabled: isEnableLogger)
-          .printError('Parse Error: $e - response body: $responseBody T model: $T , R model: $R ');
+      CustomLogger(isEnabled: isEnableLogger).printError('Parse Error: $e - response body: $responseBody T model: $T , R model: $R ');
     }
   }
 }

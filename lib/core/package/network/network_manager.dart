@@ -1,22 +1,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
-import 'package:chef_upp/core/extensions/request_type_extension.dart';
+import 'package:chef_upp/core/package/network/utils/request_type_extension.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 // ignore: implementation_imports
 import 'package:dio/src/adapters/io_adapter.dart' if (dart.library.html) 'package:dio/src/adapters/browser_adapter.dart' as adapter;
+import 'package:flutter/foundation.dart';
 import 'package:retry/retry.dart';
 
-import '../../enum/request_type.dart';
-import '../../interfaces/INetworkManager.dart';
-import '../../interfaces/INetworkModel.dart';
-import '../../interfaces/IResponseModel.dart';
-import '../../model/empty_model.dart';
-import '../../model/error_model.dart';
-import '../../model/response_model.dart';
+import 'enum/request_type.dart';
+import 'interface/INetworkManager.dart';
+import 'interface/INetworkModel.dart';
+import 'interface/IResponseModel.dart';
+import 'model/empty_model.dart';
+import 'model/error_model.dart';
+import 'model/response_model.dart';
 import '../../utils/custom_logger.dart';
 
 part 'operation/network_model_parser.dart';
@@ -59,7 +59,7 @@ class NetworkManager with dio.DioMixin implements dio.Dio, INetworkManager {
   }
 
   @override
-  Future<IResponseModel<R?>> send<T extends INetworkModel, R>(
+  Future<IResponseModel<R?>> sendX<T extends INetworkModel, R>(
     String path, {
     required T parseModel,
     required RequestType method,

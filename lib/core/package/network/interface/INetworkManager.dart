@@ -8,7 +8,7 @@ import 'INetworkModel.dart';
 import 'IResponseModel.dart';
 
 abstract class INetworkManager {
-  Future<IResponseModel<R?>> send<T extends INetworkModel, R>(
+  Future<IResponseModel<R?>> sendX<T extends INetworkModel, R>(
     String path, {
     required T parseModel,
     required RequestType method,
