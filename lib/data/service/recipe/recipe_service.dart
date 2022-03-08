@@ -1,3 +1,4 @@
+import 'package:chef_upp/features/model/error_model.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../core/base/base_service.dart';
@@ -19,25 +20,34 @@ class RecipeService extends IRecipeService {
   RecipeService(INetworkManager networkManager) : super(networkManager);
 
   @override
-  Future<RecipeSearchModel?>? recipeSearch({@required RecipeSearchQueryModel? queryModel}) async {
+  Future<RecipeSearchModel> recipeSearch({@required RecipeSearchQueryModel? queryModel}) async {
     final response = await networkManager.sendX<RecipeSearchModel, RecipeSearchModel>(
       _RecipePathEnum.search.toPath(),
       queryParameters: queryModel?.toJson(),
       parseModel: RecipeSearchModel(),
       method: RequestType.get,
     );
-
-    return response.data!;
+    if (response.data != null) {
+      return response.data!;
+    } else {
+      if (response.error!.model != null) throw (response.error!.model as ProjectErrorModel).message.toString();
+      throw response.error!.description.toString();
+    }
   }
 
   @override
-  Future<RecipeInformationModel?> recipeInformation({required int id}) async {
+  Future<RecipeInformationModel> recipeInformation({required int id}) async {
     final response = await networkManager.sendX<RecipeInformationModel, RecipeInformationModel>(
       _RecipePathEnum.information.toPath(val: id.toString()),
       parseModel: RecipeInformationModel(),
       method: RequestType.get,
     );
 
-    return response.data;
+    if (response.data != null) {
+      return response.data!;
+    } else {
+      if (response.error!.model != null) throw (response.error!.model as ProjectErrorModel).message.toString();
+      throw response.error!.description.toString();
+    }
   }
 }

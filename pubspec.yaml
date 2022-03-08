@@ -12,6 +12,7 @@ dependencies:
   
   # Core
   dio: ^4.0.4
+  connectivity: ^3.0.6
 
   
   # Route

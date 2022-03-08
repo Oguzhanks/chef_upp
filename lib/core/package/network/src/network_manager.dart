@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:connectivity/connectivity.dart';
+
 import 'utils/request_type_extension.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
@@ -76,6 +78,9 @@ class NetworkManager with dio.DioMixin implements dio.Dio, INetworkManager {
     final body = _getBodyModel(data);
 
     try {
+      if (await Connectivity().checkConnectivity() == ConnectivityResult.none) {
+        return ResponseModel(error: ErrorModel(description: 'Please check your connection!'));
+      }
       final response = await request('$path$urlSuffix', data: body, options: options, queryParameters: queryParameters, cancelToken: canceltoken);
       final responseStatusCode = response.statusCode ?? HttpStatus.notFound;
       if (responseStatusCode >= HttpStatus.ok && responseStatusCode <= HttpStatus.multipleChoices) {
