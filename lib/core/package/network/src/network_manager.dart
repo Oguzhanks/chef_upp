@@ -78,7 +78,7 @@ class NetworkManager with dio.DioMixin implements dio.Dio, INetworkManager {
     final body = _getBodyModel(data);
 
     try {
-      if (await Connectivity().checkConnectivity() == ConnectivityResult.none) {
+      if ((Platform.isAndroid || Platform.isIOS) && await Connectivity().checkConnectivity() == ConnectivityResult.none) {
         return ResponseModel(error: ErrorModel(description: 'Please check your connection!'));
       }
       final response = await request('$path$urlSuffix', data: body, options: options, queryParameters: queryParameters, cancelToken: canceltoken);

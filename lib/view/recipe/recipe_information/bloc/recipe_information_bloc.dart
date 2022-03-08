@@ -17,7 +17,7 @@ class RecipeInformationBloc extends BaseBloc<RecipeInformationEvent, RecipeServi
     emit(LoadingState());
     try {
       final response = await service.recipeInformation(id: event.id);
-      emit(LoadedState(response!));
+      emit(LoadedState(response));
     } catch (e) {
       emit(ErrorState(e.toString()));
     }

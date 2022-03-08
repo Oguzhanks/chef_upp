@@ -72,7 +72,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
 
   Widget _stateRouter(BuildContext context, BaseState state) {
     if (state is LazyLoadedState<RecipeSearchModel?>) {
-      return _recipeListView(state.data!, state.hasReachedMax);
+      return _recipeListView(state.data!, state.hasReachedMax, state.lazyError);
     } else if (state is ErrorState) {
       return ErrorView(
         error: state.error,
@@ -95,7 +95,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
         },
       );
 
-  Widget _recipeListView(RecipeSearchModel recipeSearchModel, bool hasReachedMax) {
+  Widget _recipeListView(RecipeSearchModel recipeSearchModel, bool hasReachedMax, bool? lazyError) {
     isLazyLoad = true;
     final _recipeList = recipeSearchModel.results;
 
@@ -108,7 +108,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
           itemBuilder: (context, index) => Column(
             children: [
               RecipeItemCard(itemData: _recipeList[index], baseUri: recipeSearchModel.baseUri),
-              if (index == _recipeList.length - 1 && !hasReachedMax) BottomLoading(padding: context.paddingLow)
+              if (index == _recipeList.length - 1 && !hasReachedMax) lazyError == true ? lazyTryAgainBtn : BottomLoading(padding: context.paddingLow),
             ],
           ),
         ),
@@ -117,4 +117,6 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
       return const EmptyView(label: 'Recipe list not found.');
     }
   }
+
+  Widget get lazyTryAgainBtn => TextButton(onPressed: laztRecipeSearch, child: const Text('Try again'));
 }

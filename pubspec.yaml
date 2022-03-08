@@ -32,6 +32,7 @@ dependencies:
   flutter_spinkit: ^5.1.0
   flutter_native_splash: ^2.1.0
   simple_animations: ^4.0.1
+  fluttertoast: ^8.0.9
 
   # Utils
   logger: ^1.1.0

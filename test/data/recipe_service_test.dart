@@ -6,9 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('Recipe Service Test', () {
     final RecipeService recipeService = RecipeService(DioManager.instance.networkManager);
-    /*  setUp(() {
-      recipeService = RecipeService(DioManager.instance.networkManager);
-    }); */
 
     test('Search Request Test', () async {
       final response = await recipeService.recipeSearch(

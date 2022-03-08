@@ -16,19 +16,23 @@ class LoadedState<T> extends BaseState {
 class LazyLoadedState<T> extends BaseState {
   final T data;
   final bool hasReachedMax;
+  final bool? lazyError;
 
   LazyLoadedState({
     required this.data,
     required this.hasReachedMax,
+    this.lazyError,
   });
 
   LazyLoadedState<T> copyWith({
     T? data,
     bool? hasReachedMax,
+    bool? lazyError,
   }) =>
       LazyLoadedState(
         data: data ?? this.data,
         hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+        lazyError: lazyError ?? this.lazyError,
       );
 }
 

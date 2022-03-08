@@ -4,8 +4,8 @@ import 'package:chef_upp/data/model/recipe/recipe_search_model.dart';
 import 'package:chef_upp/data/model/recipe/recipe_search_query_model.dart';
 import 'package:chef_upp/data/service/recipe/recipe_service.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/base/base_bloc.dart';
 
 part 'recipe_search_event.dart';
@@ -53,7 +53,15 @@ class RecipeSearchBloc extends BaseBloc<RecipeSearchEvent, IRecipeService> {
 
         emit(_stateResult);
       } catch (e) {
-        emit(ErrorState(e.toString()));
+        emit(currentState.copyWith(lazyError: true));
+        Fluttertoast.showToast(
+            msg: e.toString(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     }
   }
