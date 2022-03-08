@@ -3,16 +3,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chef_upp/core/extensions/context_extension.dart';
 import 'package:chef_upp/core/extensions/padding_kit.dart';
 import 'package:chef_upp/data/model/recipe/recipe_information_model.dart';
-import 'package:chef_upp/features/widgets/views/error_view.dart';
-import 'package:chef_upp/features/widgets/views/loading_view.dart';
 import 'package:chef_upp/features/widgets/chip/label_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../../../../features/widgets/views/error_view.dart';
+import '../../../../features/widgets/views/loading_view.dart';
 import '../bloc/recipe_information_bloc.dart';
 import '../../../../core/base/base_bloc.dart';
 import '../../../../features/constant/color_constant.dart';
+import 'package:chef_upp/core/extensions/animated_kit.dart';
 
 part 'subView/ingredients_card.dart';
 part 'subView/label_table_cell.dart';
@@ -78,16 +79,17 @@ class _RecipeInformationScreenState extends State<RecipeInformationScreen> {
         child: Padding(
           padding: context.paddingLowHorizontal,
           child: ListView(
+            addAutomaticKeepAlives: false,
             children: [
               _imageFrame(model.image),
               _space,
-              _title(model),
+              _title(model).addDropFade(delay: 0.1),
               _space,
-              _titleTable(model),
+              _titleTable(model).addDropFade(delay: 0.2),
               _space,
-              ticketWrap(model),
+              ticketWrap(model).addDropFade(delay: 0.3),
               _space,
-              _ingredients(model.extendedIngredients!),
+              _ingredients(model.extendedIngredients!).addDropFade(delay: 0.4),
               _space,
               _instructions(model.instructions),
               _space,

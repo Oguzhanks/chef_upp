@@ -50,7 +50,6 @@ class RecipeSearchBloc extends BaseBloc<RecipeSearchEvent, IRecipeService> {
 
           _stateResult = LazyLoadedState<RecipeSearchModel>(data: currentState.data, hasReachedMax: false);
         }
-        emit(InitialState());
 
         emit(_stateResult);
       } catch (e) {

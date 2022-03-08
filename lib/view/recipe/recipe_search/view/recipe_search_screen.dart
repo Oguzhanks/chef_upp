@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/base/base_bloc.dart';
 import '../../../../features/widgets/field/search_field.dart';
 import '../../../../features/widgets/load/bottom_loading.dart';
+import '../../../../features/widgets/views/empty_view.dart';
 import '../../../../features/widgets/views/error_view.dart';
 import '../../../../features/widgets/views/loading_view.dart';
 import '../bloc/recipe_search_bloc.dart';
@@ -113,7 +114,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
         ),
       );
     } else {
-      return const ErrorView(error: 'Recipe list not found.');
+      return const EmptyView(label: 'Recipe list not found.');
     }
   }
 }

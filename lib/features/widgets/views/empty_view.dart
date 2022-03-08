@@ -1,15 +1,15 @@
 import 'package:chef_upp/core/extensions/context_extension.dart';
 import 'package:chef_upp/core/extensions/padding_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constant/color_constant.dart';
 import '../../widgets/button/main_button.dart';
 
-class ErrorView extends StatelessWidget {
-  final dynamic error;
+class EmptyView extends StatelessWidget {
+  final dynamic label;
   final Function()? onTryAgain;
-  const ErrorView({Key? key, this.error, this.onTryAgain}) : super(key: key);
+  const EmptyView({Key? key, this.label, this.onTryAgain}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +19,15 @@ class ErrorView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Lottie.asset(
-          'assets/images/lot_error.json',
-          width: size,
-          height: size,
-          fit: BoxFit.fill,
+        FaIcon(
+          FontAwesomeIcons.clipboardList,
+          size: size,
+          color: ColorConstant.headline.withOpacity(0.6),
         ),
         Padding(
           padding: context.paddingNormal,
           child: Text(
-            error.toString(),
+            label.toString(),
             textAlign: TextAlign.center,
             maxLines: 6,
             overflow: TextOverflow.ellipsis,

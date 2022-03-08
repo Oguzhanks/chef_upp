@@ -1,25 +1,16 @@
 part of 'base_bloc.dart';
 
 @immutable
-abstract class BaseState extends Equatable {}
+abstract class BaseState {}
 
-class InitialState extends BaseState {
-  @override
-  List<Object?> get props => [];
-}
+class InitialState extends BaseState {}
 
-class LoadingState extends BaseState {
-  @override
-  List<Object?> get props => [];
-}
+class LoadingState extends BaseState {}
 
 class LoadedState<T> extends BaseState {
   final T data;
 
   LoadedState(this.data);
-
-  @override
-  List<Object?> get props => [data];
 }
 
 class LazyLoadedState<T> extends BaseState {
@@ -39,16 +30,10 @@ class LazyLoadedState<T> extends BaseState {
         data: data ?? this.data,
         hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       );
-
-  @override
-  List<Object?> get props => [data, hasReachedMax];
 }
 
 class ErrorState extends BaseState {
   final String error;
 
   ErrorState(this.error);
-
-  @override
-  List<Object?> get props => [error];
 }
