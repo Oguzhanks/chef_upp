@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chef_upp">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="chef_upp"
+        android:label="Chef Upp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
