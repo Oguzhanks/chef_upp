@@ -82,7 +82,9 @@ class NetworkManager with dio.DioMixin implements dio.Dio, INetworkManager {
         return ResponseModel(error: ErrorModel(description: 'Please check your connection!'));
       }
       final response = await request('$path$urlSuffix', data: body, options: options, queryParameters: queryParameters, cancelToken: canceltoken);
+
       final responseStatusCode = response.statusCode ?? HttpStatus.notFound;
+
       if (responseStatusCode >= HttpStatus.ok && responseStatusCode <= HttpStatus.multipleChoices) {
         return _getResponseResult<T, R>(response.data, parseModel);
       } else {
