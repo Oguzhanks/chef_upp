@@ -34,6 +34,9 @@ class RecipeSearchBloc extends BaseBloc<RecipeSearchEvent, IRecipeService> {
   Future<void> _lazyRecipeSearch(event, emit) async {
     if (!_hasReachedMax(state) && state is LazyLoadedState) {
       var currentState = (state as LazyLoadedState<RecipeSearchModel>);
+
+      emit(currentState.copyWith(lazyError: false));
+
       if (event.queryModel != null) {
         event.queryModel!.offset = currentState.data.results!.length;
       }
